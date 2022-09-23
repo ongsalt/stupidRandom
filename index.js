@@ -24,7 +24,6 @@ document.addEventListener('keypress', e => {
     } else {
         t = 0
     }
-    t = 22
 })
 
 const f = []
