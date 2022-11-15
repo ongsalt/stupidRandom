@@ -1,6 +1,7 @@
 const resultDisplay = document.getElementById('result')
 const button = document.getElementById('random')
 const rateup = document.getElementById('rateup')
+const rateup2 = document.getElementById('rateup2')
 
 let t = 0
 
@@ -19,11 +20,12 @@ document.addEventListener('keypress', e => {
         t = 16
     } else if (e.key === 'r') {
         t = 14
-    } else if (e.key === 'j') {
-        t = 10
+    } else if (e.key === 'f') {
+        t = 21
     } else {
         t = 0
     }
+    
 })
 
 const f = []
@@ -45,7 +47,10 @@ function doRandom() {
             if (rateup.checked && Math.random() > 0.45) {
                 resultDisplay.innerText = 15
                 console.log('t')
-            } else {
+            } else if (rateup2.checked && Math.random() > 0.45) {
+                resultDisplay.innerText = 17
+            }
+            else {
                 const randomElement = f[Math.floor(Math.random() * f.length)]
                 resultDisplay.innerText = randomElement
             }
