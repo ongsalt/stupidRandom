@@ -6,3 +6,17 @@
     --border-color: gainsboro;
     --elevated-color: rgb(246, 246, 246);
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --accent-color: rgb(76, 97, 255);
+        --accent-color-trans: rgba(76, 97, 255, 0.2);
+        --bg-color: rgb(24, 23, 28);
+        --bg-color-trans: rgba(24, 23, 28, 0.7);
+        --border-color: rgb(68, 67, 83);
+        --elevated-color: rgb(39, 38, 52);
+    }
+    body {
+        color: white;
+    }
+}
