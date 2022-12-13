@@ -13,28 +13,36 @@
 
 <body>
     <header>
-        <h2> สุ่มเลขโง่ๆ </h2>
+        <div class="flex">
+            <h2> สุ่มเลขโง่ๆ </h2>
+            <code> 2.0 </code>
+        </div>
+        <div class="flex">
+            <a href="/legacy">
+                Legacy mode →
+            </a> 
+        </div>
     </header>
     <main>
         <div>
             <p> ความน่าเชื่อถือมากกว่า 9000% การันตีโดยนายสิริปิยวัช </p>
             <div class="option">
-            <!-- <h1> สุ่มเลขโง่ๆโดยคนโง่ๆเพื่อคนโง่ๆ </h1> -->
+                <!-- <h1> สุ่มเลขโง่ๆโดยคนโง่ๆเพื่อคนโง่ๆ </h1> -->
 
                 <h3> Rate up </h3>
-                    <label> 
-                        <input type="checkbox" name="rateup" id="rateup">
-                        <span>
-                            นายธีร์
-                        </span>
-                    </label>
+                <label>
+                    <input type="checkbox" name="rateup" id="rateup">
+                    <span>
+                        นายธีร์
+                    </span>
+                </label>
 
-                    <label> 
-                        <input type="checkbox" name="rateup2" id="rateup2">
-                        <span>
-                            นายมาร์ค
-                        </span>
-                    </label>
+                <label>
+                    <input type="checkbox" name="rateup2" id="rateup2">
+                    <span>
+                        นายมาร์ค
+                    </span>
+                </label>
             </div>
             <div class="button-wrapper">
                 <button type="button" id="random" onclick="doRandom()"> สุ่ม </button>
@@ -42,7 +50,7 @@
         </div>
         <div class="output">
             <h3> เลขที่ออกคือ </h3>
-            <h1 id="result"> </h1>
+            <h1 id="result"> - </h1>
         </div>
     </main>
 </body>
