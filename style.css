@@ -9,6 +9,7 @@ html {
 
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all .4s;
 }
 
 header {
@@ -59,7 +60,6 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: all .4s;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -86,7 +86,7 @@ button:active {
 }
 
 .button-wrapper {
-    margin-bottom: 32px;
+    margin: 32px 0px;
 }
 
 #result {
@@ -127,4 +127,37 @@ input ~ span:hover {
 input:checked ~ span {
     background-color: var(--accent-color);
     color: white;
+}
+
+
+@media only screen and (max-width: 768px)  {
+    main {
+        display: flex;
+        flex-direction: column-reverse;
+        height: calc(100vh - 120px);
+        padding: 24px;
+    }
+
+    #result {
+        font-size: 8rem;
+        margin: auto;
+        padding-bottom: 12px;
+        text-align: center;
+    }
+
+    .output {
+        padding: 12px;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .button-wrapper {
+        margin: 0;
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
 }
