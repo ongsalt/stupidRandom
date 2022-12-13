@@ -25,7 +25,7 @@ document.addEventListener('keypress', e => {
     } else {
         t = 0
     }
-    
+
 })
 
 const f = []
@@ -34,27 +34,40 @@ for (let i = 1; i <= 24; i++) {
     f.push(i)
 }
 
-function doRandom() {
-    const interval = setInterval(() => {
-        resultDisplay.innerText = Math.floor(Math.random() * 24)
-    }, 30)
-    setTimeout(function () {
-        clearInterval(interval)
-        if (t) {
-            resultDisplay.innerText = t
-            // t = 0
-        } else {
-            if (rateup.checked && Math.random() > 0.45) {
-                resultDisplay.innerText = 15
-                console.log('t')
-            } else if (rateup2.checked && Math.random() > 0.45) {
-                resultDisplay.innerText = 17
-            }
-            else {
-                const randomElement = f[Math.floor(Math.random() * f.length)]
-                resultDisplay.innerText = randomElement
-            }
-        }
-    }, 500);
+function easeOutExpo(x) {
+    return 1 - Math.sqrt(1 - Math.pow(x, 2));
 
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+async function magic() {
+    for (let i = 0; i / 30 <= 1; i++) {
+        const wait = easeOutExpo(i / 30) ** 1.5 * 500;
+        console.log(i / 20, wait);
+        await sleep(wait);
+        resultDisplay.innerText = Math.round(Math.random()*100) % 24 + 1
+    }
+}
+
+async function doRandom() {
+    await magic()
+    if (t) {
+        resultDisplay.innerText = t
+        // t = 0
+    } else {
+        if (rateup.checked && Math.random() > 0.45) {
+            resultDisplay.innerText = 15
+            console.log('t')
+        } else if (rateup2.checked && Math.random() > 0.45) {
+            resultDisplay.innerText = 17
+        }
+        else {
+            const randomElement = f[Math.floor(Math.random() * f.length)]
+            resultDisplay.innerText = randomElement
+        }
+    }
 }
