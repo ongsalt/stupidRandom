@@ -5,6 +5,15 @@ const rateup2 = document.getElementById('rateup2')
 
 let t = 0
 
+
+rateup.addEventListener('click', () => {
+    rateup2.checked = false
+})
+
+rateup2.addEventListener('click', () => {
+    rateup.checked = false
+})
+
 document.addEventListener('keypress', e => {
     if (e.key === 't') {
         t = 15

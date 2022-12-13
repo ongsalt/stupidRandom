@@ -7,6 +7,10 @@ html {
     height: 100vh;
 }
 
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -33,31 +37,44 @@ main>div {
     padding: 12px;
 }
 
+main > :first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+    height: 100%;
+}
+
+main > :first-child > :nth-child(2) {
+    flex: 1;
+}
+
 button {
-    width: 120px;
-    height: 80px;
-    font-size: larger;
-    /* background-color: var(--accent-color);
+    width: 200px;
+    height: 100px;
+    position: relative;
+    top: 0px;
+    font-size: x-large;
+    background-color: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .4s;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+button:hover {
+    background-color: var(--accent-color-trans);
+    color: var(--accent-color);
+    box-shadow: 0px 6px 12px var(--accent-color-trans);
+}
+
+button:active {
+    /* box-shadow: 0px 6px 12px var(--accent-color-trans); */
     color: white;
-    border: none; */
-}
-
-label {
-    display: block;
-    /* color: white;
-    border-radius: 24px;
-    padding: 2px 12px;
-    align-items: center;
-    height: 2rem;
-    font-size: medium;
-    background-color: red; */
-}
-
-input:checked {
     background-color: var(--accent-color);
+    top: 1px;
 }
-
-
 
 .output {
     background-color: var(--elevated-color);
@@ -69,7 +86,7 @@ input:checked {
 }
 
 .button-wrapper {
-    margin-top: 48px;
+    margin-bottom: 32px;
 }
 
 #result {
@@ -77,4 +94,37 @@ input:checked {
     margin: auto;
     padding-bottom: 30%;
     text-align: center;
+}
+
+input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+span {
+    /* color: var(--accent-color); */
+    display: inline-flex;
+    border-radius: 24px;
+    padding: 2px 12px;
+    align-items: center;
+    height: 2rem;
+    font-size: medium;
+    transition: all .4s;
+    background-color: var(--elevated-color);
+    cursor: pointer;
+}
+
+/* On mouse-over, add a grey background color */
+input ~ span:hover {
+    background-color: var(--accent-color-trans);
+    color: var(--accent-color);
+}
+
+/* When the checkbox is checked, add a blue background */
+input:checked ~ span {
+    background-color: var(--accent-color);
+    color: white;
 }
