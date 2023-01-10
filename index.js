@@ -3,7 +3,7 @@ const button = document.getElementById('random')
 const rateup = document.getElementById('rateup')
 const rateup2 = document.getElementById('rateup2')
 
-let t = 0
+let t = 15
 let kmode = true
 let rateups = []
 
