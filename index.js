@@ -1,62 +1,107 @@
-const sourceElement = document.getElementById('source')
-const resultElement = document.getElementById('result')
+const resultDisplay = document.getElementById('result')
+const button = document.getElementById('random')
+const rateup = document.getElementById('rateup')
+const rateup2 = document.getElementById('rateup2')
 
-const sourcelangElement = document.getElementById('sourcelang')
-const targetlangElement = document.getElementById('targetlang')
+let t = 15
+let kmode = true
+let rateups = []
 
-
-const dictionary = {
-    'ธีร์': 'เกย์ไทย',
-    'นคร': 'ขี้โม้',
-    'นัต': 'น้ำกู',    
-}
-
-let previousSource;
-
-function generateRegExp(dictionary) {
-    const reg = new RegExp(Object.keys(dictionary).join("|"), "g");
-    return reg
-}
-
-const reg = generateRegExp(dictionary)
-
-function translate(source) {
-    const formatted = source.split(reg).map(text => ({ text, isReplaced: false }))
-    let index = 1;
-    const noMetadata = source.replace(reg, (matched) => {
-        formatted.splice(index, 0, {
-            text: dictionary[matched],
-            isReplaced: true
-        })
-        index += 2;
-        return dictionary[matched]
-    });
-
-    console.log(formatted)
-
-    return formatted
-}
-
-sourceElement.onkeyup = event => {
-    if (previousSource === sourceElement.value) {
-        return
+rateup.addEventListener('click', (e) => {
+    if (e.target.checked) {
+        rateups.push(15)
+    } else {
+        rateups = rateups.filter(each => each!=15)
     }
-    const source = event.target.value
-    console.log(source);
-    const translated = translate(source);
+})
 
-    // Compare translated -> Fuck this is React useState reimplement
+rateup2.addEventListener('click', (e) => {
+    if (e.target.checked) {
+        rateups.push(17)
+    } else {
+        rateups = rateups.filter(each => each!=17)
+    }
+})
 
-    resultElement.innerHTML = ''; // clear all node
-    translated.forEach((each, index) => {  // insert new 
-        const newElement = document.createElement('span')
-        newElement.innerText = each.text
-        // blink only if
-        if (each.isReplaced && translated.at(-1).text === '' && index === translated.length - 2) {
-            newElement.classList.add('replaced')
+document.addEventListener('keypress', e => {
+    if (e.key === 't') {
+        t = 15
+    } else if (e.key === 'j') {
+        t = 10
+    } else if (e.key === 'o') {
+        t = 18
+    } else if (e.key === 'm') {
+        t = 17
+    } else if (e.key === 'p') {
+        t = 22
+    } else if (e.key === 'd') {
+        t = 16
+    } else if (e.key === 'r') {
+        t = 14
+    } else if (e.key === 'f') {
+        t = 21
+    } else {
+        t = 0
+    }
+})
+
+const pool = []
+
+for (let i = 1; i <= 24; i++) {
+    pool.push(i)
+}
+
+function choose(a) {
+    return a[Math.floor(Math.random() * a.length) % a.length]
+}
+
+function easeOutExpo(x) {
+    return 1 - Math.sqrt(1 - Math.pow(x, 2));
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function magic() {
+    for (let i = 0; i / 30 <= 1; i++) {
+        const wait = easeOutExpo(i / 30) ** 1.5 * 500;
+        // console.log(i / 20, wait);
+        await sleep(wait);
+        resultDisplay.innerText = choose(pool)
+    }
+}
+
+async function doRandom() {
+    await magic()
+    if (t) {
+        if (kmode) {
+            resultDisplay.innerText = t
+            await sleep(800)
+            resultDisplay.innerText = choose(pool)
+            await sleep(500)
         }
-        resultElement.appendChild(newElement)
-    })
-
-    previousSource = sourceElement.value
+        resultDisplay.innerText = t
+        // t = 0
+    } else {
+        if (rateups.length !== 0) {
+            console.log('Rate up enebled')
+            if (Math.random() > 0.45) { // if rateup then randomly choose between those
+                console.log('Choosing rate up value')
+                if (kmode) {
+                    resultDisplay.innerText = choose(rateups)
+                    await sleep(800)
+                    resultDisplay.innerText = choose(pool)
+                    await sleep(500)
+                }
+                resultDisplay.innerText = choose(rateups)
+            } else {
+                console.log('Failed to get rate up value')
+                resultDisplay.innerText = choose(pool)
+            }
+        } else {
+            console.log('Rate up disabled')
+            resultDisplay.innerText = choose(pool)
+        }
+    }
 }
