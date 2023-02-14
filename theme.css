@@ -1,10 +1,12 @@
 :root {
     --accent-color: rgb(76, 97, 255);
+    --accent-color-alt: rgb(119, 134, 251);
     --accent-color-trans: rgba(76, 97, 255, 0.2);
     --bg-color: white;
     --bg-color-trans: rgba(255, 255, 255, 0.5);
     --border-color: gainsboro;
     --elevated-color: rgb(246, 246, 246);
+    
 }
 
 @media (prefers-color-scheme: dark) {
